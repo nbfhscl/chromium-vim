@@ -131,12 +131,38 @@ Mappings.defaults = [
   ['g+',        'incrementURLPath'],
   ['g-',        'decrementURLPath'],
   ['#',         'resetScrollFocus'],
-  ['cm',        'muteTab']
+  // ['cm', 'muteTab'],
+  ['cm', 'eventFire']
 ];
 
 Mappings.defaultsClone = Object.clone(Mappings.defaults);
 
 Mappings.actions = {
+
+  eventFire: function (){
+    function eventFire(ele) {
+      etype = 'click';
+      if (ele.fireEvent) {
+        ele.fireEvent('on' + etype);
+      } else {
+        // var ev = new Event("MouseEvent", { "bubbles": true, "cancelable": false });
+        // ele.dispatchEvent(ev);
+        // var ev = new PointerEvent('click');
+        // var ev = new MouseEvent('click');
+        var ev = new MouseEvent('contextmenu');
+        ele.dispatchEvent(ev);
+        // var evObj = document.createEvent('Event');
+        // evObj.initEvent(etype, true, false);
+        // el.dispatchEvent(evObj);
+      }
+    } 
+    console.log("youjile");
+    // let ele1 = document.querySelector("#repo - content - pjax - container > div > div.Layout.Layout--flowRow-until - md.Layout--sidebarPosition - end.Layout--sidebarPosition - flowRow - end > div.Layout - main > div.file - navigation.mb - 3.d - flex.flex - items - start > span > get - repo > feature - callout > details > summary > span");
+    let ele = document.querySelector("#readme > div.d-flex.js-sticky.js-position-sticky.top-0.border-top-0.border-bottom.p-2.flex-items-center.flex-justify-between.color-bg-default.rounded-top-2 > div:nth-child(2) > a")
+    // console.log(ele);
+    // ele.contextmenu();
+    eventFire(ele);
+  },
 
   lastUsedTab: function() { RUNTIME('lastUsedTab'); },
   '<Nop>': function() {},

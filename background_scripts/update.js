@@ -34,13 +34,13 @@ chrome.runtime.onInstalled.addListener(function(details) {
         contentScripts.js.forEach(function(file) {
           chrome.tabs.executeScript(tab.id, {
             file: file,
-            allFrames: contentScripts.all_fames
+            allFrames: contentScripts.all_frames
           }, checkError);
         });
         contentScripts.css.forEach(function(file) {
           chrome.tabs.insertCSS(tab.id, {
             file: file,
-            allFrames: contentScripts.all_fames
+            allFrames: contentScripts.all_frames
           }, checkError);
         });
       });
